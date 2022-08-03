@@ -8,10 +8,9 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('should return a list of books', async () => {
+  it('#GET should return author id and their name', async () => {
     const res = await request(app).get('/books');
     expect(res.body.length).toEqual(4);
-    const fellowship = res.body.find((book) => book.id)
   });
   afterAll(() => {
     pool.end();
