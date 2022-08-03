@@ -57,6 +57,20 @@ describe('backend-express-template routes', () => {
       released: expect.any(Number),
     });
   });
+  it('#POST /authors should make a new author', async () => {
+    const res = await request(app).post('/authors').send({
+      name: 'Michael Darling',
+      dob: 1874,
+      pob: 'Spain'
+    });
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      dob: expect.any(Number),
+      pob: expect.any(String),
+    });
+  });
   afterAll(() => {
     pool.end();
   });
