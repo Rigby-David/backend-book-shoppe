@@ -45,6 +45,18 @@ describe('backend-express-template routes', () => {
       books: expect.any(Array),
     });
   });
+  it('#POST /books should make a new book', async () => {
+    const res = await request(app).post('/books').send({
+      title: 'The Long Brief',
+      released: 1992
+    });
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      title: expect.any(String),
+      released: expect.any(Number),
+    });
+  });
   afterAll(() => {
     pool.end();
   });
