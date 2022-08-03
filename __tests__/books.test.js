@@ -19,6 +19,12 @@ describe('backend-express-template routes', () => {
   it('#GET /authors should return id and name', async () => {
     const res = await request(app).get('/authors');
     expect(res.body.length).toBe(4);
+    expect(res.body[0]).toEqual({
+      id: '1',
+      name: 'J.R.R. Tolkein',
+      dob: 1892,
+      pob: 'Bloemfontein',
+    });
   });
   afterAll(() => {
     pool.end();
