@@ -35,6 +35,16 @@ describe('backend-express-template routes', () => {
       authors: expect.any(Array),
     });
   });
+  it('#GET /authors/:id should return author name, dob, pob, and books array with id, title, released', async () => {
+    const res = await request(app).get('/authors/1');
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      dob: expect.any(Number),
+      pob: expect.any(String),
+      books: expect.any(Array),
+    });
+  });
   afterAll(() => {
     pool.end();
   });
