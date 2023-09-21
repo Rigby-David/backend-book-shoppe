@@ -4,6 +4,58 @@
 DROP TABLE IF EXISTS book_authors;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS authors;
+DROP TABLE IF EXISTS scorecard;
+DROP TABLE IF EXISTS scores;
+DROP TABLE IF EXISTS golfholes;
+
+CREATE TABLE scores (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    score INT
+);
+
+INSERT INTO scores (
+    score
+)
+
+VALUES
+    (3),
+    (3),
+    (4),
+    (3),
+    (3);
+
+CREATE TABLE golfholes (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    hole_number INT,
+    par INT
+);
+
+INSERT INTO golfholes (
+    hole_number,
+    par
+)
+
+VALUES
+    (1, 3),
+    (2, 3),
+    (3, 3),
+    (4, 3),
+    (5, 3);
+
+    CREATE TABLE scorecard (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    hole_id INT,
+    score_id INT,
+    FOREIGN KEY (hole_id) REFERENCES golfholes(id),
+    FOREIGN KEY (score_id) REFERENCES scores(id)
+);
+
+INSERT INTO scorecard (hole_id, score_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
 
 CREATE TABLE books (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
